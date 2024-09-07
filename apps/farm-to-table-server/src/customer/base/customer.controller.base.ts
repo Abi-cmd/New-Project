@@ -221,6 +221,7 @@ export class CustomerControllerBase {
     const results = await this.service.findOrders(params.id, {
       ...query,
       select: {
+        businessLocation: true,
         createdAt: true,
 
         customer: {
@@ -232,6 +233,7 @@ export class CustomerControllerBase {
         id: true,
         orderDate: true,
         totalAmount: true,
+        trackingMethod: true,
         updatedAt: true,
       },
     });

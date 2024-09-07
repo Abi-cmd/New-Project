@@ -4,6 +4,7 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
   DateTimeInput,
@@ -19,6 +20,7 @@ export const OrderEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="businessLocation" source="businessLocation" />
         <ReferenceInput
           source="customer.id"
           reference="Customer"
@@ -36,6 +38,7 @@ export const OrderEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={PaymentTitle} />
         </ReferenceArrayInput>
         <NumberInput label="totalAmount" source="totalAmount" />
+        <TextInput label="trackingMethod" source="trackingMethod" />
       </SimpleForm>
     </Edit>
   );

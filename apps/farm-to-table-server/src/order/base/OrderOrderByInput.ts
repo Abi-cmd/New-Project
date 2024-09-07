@@ -28,6 +28,17 @@ class OrderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  businessLocation?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   createdAt?: SortOrder;
 
   @ApiProperty({
@@ -73,6 +84,17 @@ class OrderOrderByInput {
     nullable: true,
   })
   totalAmount?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  trackingMethod?: SortOrder;
 
   @ApiProperty({
     required: false,

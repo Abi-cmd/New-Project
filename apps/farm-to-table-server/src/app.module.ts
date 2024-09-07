@@ -1,10 +1,12 @@
 import { RabbitMQModule } from "./rabbitmq/rabbitmq.module";
 import { Module } from "@nestjs/common";
+import { CacheModule } from "@nestjs/cache-manager";
+import { redisStore } from "cache-manager-ioredis-yet";
 import { FarmerModule } from "./farmer/farmer.module";
 import { CustomerModule } from "./customer/customer.module";
-import { OrderModule } from "./order/order.module";
 import { PaymentModule } from "./payment/payment.module";
 import { ProduceModule } from "./produce/produce.module";
+import { OrderModule } from "./order/order.module";
 import { UserModule } from "./user/user.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
@@ -15,6 +17,8 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 
+import { LoggerModule } from "./logger/logger.module";
+
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 
@@ -24,11 +28,12 @@ import { AuthModule } from "./auth/auth.module";
     RabbitMQModule,
     ACLModule,
     AuthModule,
+    LoggerModule,
     FarmerModule,
     CustomerModule,
-    OrderModule,
     PaymentModule,
     ProduceModule,
+    OrderModule,
     UserModule,
     HealthModule,
     PrismaModule,
@@ -51,6 +56,30 @@ import { AuthModule } from "./auth/auth.module";
       },
       inject: [ConfigService],
       imports: [ConfigModule],
+    }),
+    CacheModule.registerAsync({
+      isGlobal: true,
+      imports: [ConfigModule],
+
+      useFactory: async (configService: ConfigService) => {
+        const host = configService.get("REDIS_HOST");
+        const port = configService.get("REDIS_PORT");
+        const username = configService.get("REDIS_USERNAME");
+        const password = configService.get("REDIS_PASSWORD");
+        const ttl = configService.get("REDIS_TTL", 5000);
+
+        return {
+          store: await redisStore({
+            host: host,
+            port: port,
+            username: username,
+            password: password,
+            ttl: ttl,
+          }),
+        };
+      },
+
+      inject: [ConfigService],
     }),
   ],
   providers: [],

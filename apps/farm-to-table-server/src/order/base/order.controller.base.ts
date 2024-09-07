@@ -60,6 +60,7 @@ export class OrderControllerBase {
           : undefined,
       },
       select: {
+        businessLocation: true,
         createdAt: true,
 
         customer: {
@@ -71,6 +72,7 @@ export class OrderControllerBase {
         id: true,
         orderDate: true,
         totalAmount: true,
+        trackingMethod: true,
         updatedAt: true,
       },
     });
@@ -93,6 +95,7 @@ export class OrderControllerBase {
     return this.service.orders({
       ...args,
       select: {
+        businessLocation: true,
         createdAt: true,
 
         customer: {
@@ -104,6 +107,7 @@ export class OrderControllerBase {
         id: true,
         orderDate: true,
         totalAmount: true,
+        trackingMethod: true,
         updatedAt: true,
       },
     });
@@ -127,6 +131,7 @@ export class OrderControllerBase {
     const result = await this.service.order({
       where: params,
       select: {
+        businessLocation: true,
         createdAt: true,
 
         customer: {
@@ -138,6 +143,7 @@ export class OrderControllerBase {
         id: true,
         orderDate: true,
         totalAmount: true,
+        trackingMethod: true,
         updatedAt: true,
       },
     });
@@ -178,6 +184,7 @@ export class OrderControllerBase {
             : undefined,
         },
         select: {
+          businessLocation: true,
           createdAt: true,
 
           customer: {
@@ -189,6 +196,7 @@ export class OrderControllerBase {
           id: true,
           orderDate: true,
           totalAmount: true,
+          trackingMethod: true,
           updatedAt: true,
         },
       });
@@ -220,6 +228,7 @@ export class OrderControllerBase {
       return await this.service.deleteOrder({
         where: params,
         select: {
+          businessLocation: true,
           createdAt: true,
 
           customer: {
@@ -231,6 +240,7 @@ export class OrderControllerBase {
           id: true,
           orderDate: true,
           totalAmount: true,
+          trackingMethod: true,
           updatedAt: true,
         },
       });

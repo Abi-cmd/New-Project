@@ -13,10 +13,6 @@ import { CustomerList } from "./customer/CustomerList";
 import { CustomerCreate } from "./customer/CustomerCreate";
 import { CustomerEdit } from "./customer/CustomerEdit";
 import { CustomerShow } from "./customer/CustomerShow";
-import { OrderList } from "./order/OrderList";
-import { OrderCreate } from "./order/OrderCreate";
-import { OrderEdit } from "./order/OrderEdit";
-import { OrderShow } from "./order/OrderShow";
 import { PaymentList } from "./payment/PaymentList";
 import { PaymentCreate } from "./payment/PaymentCreate";
 import { PaymentEdit } from "./payment/PaymentEdit";
@@ -25,11 +21,15 @@ import { ProduceList } from "./produce/ProduceList";
 import { ProduceCreate } from "./produce/ProduceCreate";
 import { ProduceEdit } from "./produce/ProduceEdit";
 import { ProduceShow } from "./produce/ProduceShow";
+import { OrderList } from "./order/OrderList";
+import { OrderCreate } from "./order/OrderCreate";
+import { OrderEdit } from "./order/OrderEdit";
+import { OrderShow } from "./order/OrderShow";
 import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { httpAuthProvider } from "./auth-provider/ra-auth-http";
+import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
   const [dataProvider, setDataProvider] = useState<DataProvider | null>(null);
@@ -50,7 +50,7 @@ const App = (): React.ReactElement => {
       <Admin
         title={"FarmToTable"}
         dataProvider={dataProvider}
-        authProvider={httpAuthProvider}
+        authProvider={jwtAuthProvider}
         theme={theme}
         dashboard={Dashboard}
         loginPage={Login}
@@ -70,13 +70,6 @@ const App = (): React.ReactElement => {
           show={CustomerShow}
         />
         <Resource
-          name="Order"
-          list={OrderList}
-          edit={OrderEdit}
-          create={OrderCreate}
-          show={OrderShow}
-        />
-        <Resource
           name="Payment"
           list={PaymentList}
           edit={PaymentEdit}
@@ -89,6 +82,13 @@ const App = (): React.ReactElement => {
           edit={ProduceEdit}
           create={ProduceCreate}
           show={ProduceShow}
+        />
+        <Resource
+          name="Order"
+          list={OrderList}
+          edit={OrderEdit}
+          create={OrderCreate}
+          show={OrderShow}
         />
         <Resource
           name="User"

@@ -4,6 +4,7 @@ import {
   Create,
   SimpleForm,
   CreateProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
   DateTimeInput,
@@ -19,6 +20,7 @@ export const OrderCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="businessLocation" source="businessLocation" />
         <ReferenceInput
           source="customer.id"
           reference="Customer"
@@ -36,6 +38,7 @@ export const OrderCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={PaymentTitle} />
         </ReferenceArrayInput>
         <NumberInput label="totalAmount" source="totalAmount" />
+        <TextInput label="trackingMethod" source="trackingMethod" />
       </SimpleForm>
     </Create>
   );

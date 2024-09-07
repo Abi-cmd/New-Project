@@ -11,20 +11,36 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+
 import {
-  ValidateNested,
+  IsString,
+  MaxLength,
   IsOptional,
+  ValidateNested,
   IsDate,
   IsNumber,
   Min,
   Max,
 } from "class-validator";
+
+import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
 import { Type } from "class-transformer";
 import { PaymentCreateNestedManyWithoutOrdersInput } from "./PaymentCreateNestedManyWithoutOrdersInput";
 
 @InputType()
 class OrderCreateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  businessLocation?: string | null;
+
   @ApiProperty({
     required: false,
     type: () => CustomerWhereUniqueInput,
@@ -72,6 +88,18 @@ class OrderCreateInput {
     nullable: true,
   })
   totalAmount?: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  trackingMethod?: string | null;
 }
 
 export { OrderCreateInput as OrderCreateInput };

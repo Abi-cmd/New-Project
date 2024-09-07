@@ -11,21 +11,36 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
+  IsString,
+  MaxLength,
+  IsOptional,
   IsDate,
   ValidateNested,
-  IsOptional,
-  IsString,
   IsNumber,
   Min,
   Max,
 } from "class-validator";
+
 import { Type } from "class-transformer";
 import { Customer } from "../../customer/base/Customer";
 import { Payment } from "../../payment/base/Payment";
 
 @ObjectType()
 class Order {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  businessLocation!: string | null;
+
   @ApiProperty({
     required: true,
   })
@@ -83,6 +98,18 @@ class Order {
     nullable: true,
   })
   totalAmount!: number | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @MaxLength(1000)
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  trackingMethod!: string | null;
 
   @ApiProperty({
     required: true,

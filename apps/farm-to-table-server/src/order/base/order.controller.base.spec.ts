@@ -18,33 +18,41 @@ import { OrderService } from "../order.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  businessLocation: "exampleBusinessLocation",
   createdAt: new Date(),
   id: "exampleId",
   orderDate: new Date(),
   totalAmount: 42.42,
+  trackingMethod: "exampleTrackingMethod",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
+  businessLocation: "exampleBusinessLocation",
   createdAt: new Date(),
   id: "exampleId",
   orderDate: new Date(),
   totalAmount: 42.42,
+  trackingMethod: "exampleTrackingMethod",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    businessLocation: "exampleBusinessLocation",
     createdAt: new Date(),
     id: "exampleId",
     orderDate: new Date(),
     totalAmount: 42.42,
+    trackingMethod: "exampleTrackingMethod",
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  businessLocation: "exampleBusinessLocation",
   createdAt: new Date(),
   id: "exampleId",
   orderDate: new Date(),
   totalAmount: 42.42,
+  trackingMethod: "exampleTrackingMethod",
   updatedAt: new Date(),
 };
 

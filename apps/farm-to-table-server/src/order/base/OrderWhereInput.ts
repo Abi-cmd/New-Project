@@ -11,9 +11,10 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
+import { IsOptional, ValidateNested } from "class-validator";
+import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { PaymentListRelationFilter } from "../../payment/base/PaymentListRelationFilter";
@@ -21,6 +22,17 @@ import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 
 @InputType()
 class OrderWhereInput {
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  businessLocation?: StringNullableFilter;
+
   @ApiProperty({
     required: false,
     type: () => CustomerWhereUniqueInput,
@@ -77,6 +89,17 @@ class OrderWhereInput {
     nullable: true,
   })
   totalAmount?: FloatNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
+  trackingMethod?: StringNullableFilter;
 }
 
 export { OrderWhereInput as OrderWhereInput };

@@ -30,6 +30,7 @@ export const CustomerShow = (props: ShowProps): React.ReactElement => {
           label="Orders"
         >
           <Datagrid rowClick="show">
+            <TextField label="businessLocation" source="businessLocation" />
             <DateField source="createdAt" label="Created At" />
             <ReferenceField
               label="customer"
@@ -41,6 +42,7 @@ export const CustomerShow = (props: ShowProps): React.ReactElement => {
             <TextField label="ID" source="id" />
             <TextField label="orderDate" source="orderDate" />
             <TextField label="totalAmount" source="totalAmount" />
+            <TextField label="trackingMethod" source="trackingMethod" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>

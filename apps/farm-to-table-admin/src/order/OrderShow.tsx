@@ -4,9 +4,9 @@ import {
   Show,
   SimpleShowLayout,
   ShowProps,
+  TextField,
   DateField,
   ReferenceField,
-  TextField,
   ReferenceManyField,
   Datagrid,
 } from "react-admin";
@@ -18,6 +18,7 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
+        <TextField label="businessLocation" source="businessLocation" />
         <DateField source="createdAt" label="Created At" />
         <ReferenceField
           label="customer"
@@ -29,6 +30,7 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <TextField label="orderDate" source="orderDate" />
         <TextField label="totalAmount" source="totalAmount" />
+        <TextField label="trackingMethod" source="trackingMethod" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
           reference="Payment"
